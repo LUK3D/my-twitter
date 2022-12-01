@@ -88,10 +88,11 @@ const props = defineProps({
 
 </script>
 <template>
-    <div :class="`w-full h-full flex flex-col ${props.isExpanded ? 'p-10' : 'p-2'}`">
+    <div
+        :class="`w-full h-full flex flex-col ${props.isExpanded ? 'p-10 px-5' : 'p-2'} relative overflow-y-auto overflow-x-hidden`">
         <div class="profile flex flex-col justify-center items-center">
             <div
-                :class="`avatar rounded-full bg-ll-base dark:bg-ld-base ${props.isExpanded ? 'w-35 h-35' : 'w-12 h-12'} border-2 border-ll-border dark:border-ld-border relative`">
+                :class="`avatar rounded-full bg-ll-base dark:bg-ld-base ${props.isExpanded ? 'w-25 h-25' : 'w-12 h-12'} border-2 border-ll-border dark:border-ld-border relative`">
                 <img src="https://picsum.photos/seed/picsum/200/300" class="w-full h-full  rounded-full object-cover"
                     alt="">
 
@@ -104,42 +105,52 @@ const props = defineProps({
 
                 </div>
             </div>
-            <p v-if="props.isExpanded" class="text-2xl font-bold text-gray-800 dark:text-gray-300">Lukebana</p>
-            <p class="-mt-1" v-if="props.isExpanded">The creator of this platform</p>
+            <p v-if="props.isExpanded" class="text-xl font-bold text-gray-800 dark:text-gray-300">Lukebana</p>
+            <p class="-mt-1 text-sm" v-if="props.isExpanded">The creator of this platform</p>
         </div>
 
         <div v-if="props.isExpanded"
             class="w-full flex justify-between mt-5 pb-5 border-b border-ll-border dark:border-ld-border">
             <div class="flex flex-col justify-center items-center">
-                <p class="text-2xl font-bold text-gray-800 dark:text-gray-300">255</p>
-                <p class="-mt-1">Posts</p>
+                <p class="text-lg font-bold text-gray-800 dark:text-gray-300">255</p>
+                <p class="-mt-1 text-xs">Posts</p>
             </div>
             <div class="flex flex-col justify-center items-center">
-                <p class="text-2xl font-bold text-gray-800 dark:text-gray-300">298.45K</p>
-                <p class="-mt-1">Followers</p>
+                <p class="text-lg font-bold text-gray-800 dark:text-gray-300">298.45K</p>
+                <p class="-mt-1 text-xs">Followers</p>
             </div>
             <div class="flex flex-col justify-center items-center">
-                <p class="text-2xl font-bold text-gray-800 dark:text-gray-300">20.5M</p>
-                <p class="-mt-1">Following</p>
+                <p class="text-lg font-bold text-gray-800 dark:text-gray-300">20.5M</p>
+                <p class="-mt-1 text-xs">Following</p>
             </div>
         </div>
         <ul :class="`flex flex-col w-full pt-5 ${props.isExpanded ? '' : 'justify-center flex '}`">
             <li v-for="(menu, index) in menus.menusList" :key="menu.name"
-                :class="` w-full py-2  flex items-center ${props.isExpanded ? 'mb-2' : 'justify-center mb-5'} ${menu.index == menus.active ? 'text-ll-primary' : ''} cursor-pointer active:scale-95 transform transition-transform select-none`"
-                @click="menus.active = menu.index">
+                :class="` w-full py-2  flex items-center ${props.isExpanded ? 'mb-2' : 'justify-center mb-4'} ${menu.index == menus.active ? 'text-ll-primary' : ''} cursor-pointer active:scale-95 transform transition-transform select-none`"
+                @click="menus.active = menu.index, $.emit('onCloseNavbar', false)">
                 <div v-html="menu.icon"></div>
-                <p v-if="props.isExpanded" class="ml-5">{{ menu.name }}</p>
+                <p v-if="props.isExpanded" class="ml-5 text-sm">{{ menu.name }}</p>
 
             </li>
         </ul>
 
-        <button
+        <button @click="$.emit('onComposePost'), $.emit('onCloseNavbar', false)"
             class="bg-ll-primary dark:bg-ld-primary text-white rounded-lg py-3 px-2 active:scale-95 transform transition-transform flex items-center justify-center">
             <p v-if="props.isExpanded">Share on Space</p>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" :class="`${props.isExpanded ? 'w-6 h-6 ml-5' : 'w-full h-full'}`">
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+            </svg>
+
+        </button>
+
+        <button @click="$.emit('onCloseNavbar', false)"
+            class="md:hidden w-8 h-8 absolute top-2 -right-1 bg-ll-neutral dark:bg-ld-neutral text-sm  border-ll-border dark:border-ld-border border   rounded-full flex items-center mr-2 active:scale-95 transform transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-full h-full">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
 
         </button>

@@ -9,8 +9,11 @@ import Feed from '../feed/Feed.vue';
 const warn = (val: boolean) => {
 }
 
-const showLeftNavbar = ref(false);
-const showRightNavbar = ref(false);
+const showLeftNavbar = ref(true);
+const showRightNavbar = ref(true);
+const showComposePost = ref(true);
+
+
 
 </script>
 <template >
@@ -20,12 +23,13 @@ const showRightNavbar = ref(false);
             <Header @on-menu-click="
     showLeftNavbar = !showLeftNavbar;
             " @on-right-menu-click="
-                showRightNavbar = !showRightNavbar;
+    showRightNavbar = !showRightNavbar;
             ">
             </Header>
         </template>
         <template #navbar>
-            <Navbar :is-expanded="showLeftNavbar">
+            <Navbar :is-expanded="showLeftNavbar" @on-compose-post="showComposePost = !showComposePost"
+                @on-close-navbar="(v) => { showLeftNavbar = v }">
             </Navbar>
         </template>
         <template #rightNavbar>
@@ -33,7 +37,8 @@ const showRightNavbar = ref(false);
             </NavbarRight>
         </template>
         <template #body>
-            <Feed></Feed>
+            <Feed :oneColumn="showLeftNavbar && showRightNavbar" :showPostComposer="showComposePost"
+                @on-close-compose-post="showComposePost = !showComposePost"></Feed>
         </template>
     </AppShell>
 </template>

@@ -28,25 +28,25 @@ const trendings = reactive([
 
 </script>
 <template>
-    <div class="w-full h-full flex flex-col py-5 px-5 bg-ll-base dark:bg-ld-base">
+    <div class="w-full h-full flex flex-col py-2 px-2 bg-ll-base dark:bg-ld-base overflow-y-auto">
 
         <ul class="w-full bg-ll-neutral dark:bg-ld-neutral p-5 rounded-md mb-5">
-            <li class="dark:text-gray-200 text-gray-700 text-xl  border-b pb-3 border-ll-border dark:border-ld-border">
+            <li class="dark:text-gray-200 text-gray-700 text-lg  border-b pb-3 border-ll-border dark:border-ld-border">
                 <p>Worldwide Trending</p>
             </li>
             <li class="mb-4">
-                <p class="text-xl dark:text-gray-200 text-gray-700 font-bold">#Desencantada</p>
-                <p class="text-sm">Original film, Watch now on HBO Max </p>
+                <p class="text-lg dark:text-gray-200 text-gray-700 font-bold">#Desencantada</p>
+                <p class="text-xs">Original film, Watch now on HBO Max </p>
             </li>
             <li class="mb-4" v-for="(trending, index) in trendings" :key="index">
-                <p class="text-sm">{{ index + 1 }} - {{ trending.gender }} </p>
-                <p class="text-xl dark:text-gray-200 text-gray-700 font-bold">{{ trending.label }}</p>
-                <p class="text-sm">{{ trending.stats }}</p>
+                <p class="text-xs">{{ index + 1 }} - {{ trending.gender }} </p>
+                <p class="text-lg dark:text-gray-200 text-gray-700 font-bold">{{ trending.label }}</p>
+                <p class="text-xs">{{ trending.stats }}</p>
             </li>
         </ul>
         <ul class="w-full bg-ll-neutral dark:bg-ld-neutral p-5 rounded-md mb-5">
             <li
-                class="dark:text-gray-200 text-gray-700 text-xl  border-b pb-3 border-ll-border dark:border-ld-border mb-4">
+                class="dark:text-gray-200 text-gray-700 text-lg  border-b pb-3 border-ll-border dark:border-ld-border mb-4">
                 <p>Who to follow</p>
             </li>
             <div v-for="(item) in [0, 1, 2, 3]" :key="item" class="flex items-center mb-4">
@@ -56,8 +56,8 @@ const trendings = reactive([
                         class="w-full h-full  rounded-full object-cover" alt="">
                 </div>
                 <div class="flex flex-col ml-2">
-                    <p class="text-xl font-bold text-gray-800 dark:text-gray-300">Lukebana</p>
-                    <p class="-mt-1">@luk3d</p>
+                    <p class="text-lg font-bold text-gray-800 dark:text-gray-300">Lukebana</p>
+                    <p class="-mt-1 text-xs">@luk3d</p>
                 </div>
 
                 <div class="flex text-ll-primary">

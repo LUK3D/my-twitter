@@ -35,9 +35,9 @@ const props = defineProps({
                 </button>
             </div>
 
-            <div class="w-full flex h-full relative overflow-hidden ">
+            <div class="w-full flex h-full relative overflow-hidden relative ">
                 <div
-                    :class="`origin-left overflow-x-hidden ${props.navbarExpanded ? 'w-120' : 'w-20'} transition-all  border-r h-full bg-ll-neutral dark:bg-ld-neutral border-ll-border dark:border-ld-border flex flex-col`">
+                    :class="`absolute left-0 top-0 z-10 w-full md:relative origin-left overflow-x-hidden ${props.navbarExpanded ? 'md:w-110' : 'w-0 md:w-20'} transition-all  border-r h-full bg-ll-neutral dark:bg-ld-neutral border-ll-border dark:border-ld-border flex flex-col`">
                     <slot name="navbar"></slot>
                 </div>
                 <div class="w-full h-full flex flex-col">
